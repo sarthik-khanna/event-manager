@@ -99,10 +99,13 @@ export default function AdminCoursesPage() {
                       <Td>
                         <button
                           onClick={() => togglePublish(c)}
-                          title="Toggle publish status"
-                          className="cursor-pointer"
+                          title={c.isPublished ? "Click to unpublish (hide from students)" : "Click to publish (show to students)"}
+                          className="group/status flex cursor-pointer flex-col items-start gap-1"
                         >
                           <Badge tone={c.isPublished ? "green" : "amber"}>{c.isPublished ? "Published" : "Draft"}</Badge>
+                          <span className="text-[11px] text-neutral-500 underline-offset-2 group-hover/status:text-neutral-200 group-hover/status:underline">
+                            {c.isPublished ? "Unpublish" : "Publish now"}
+                          </span>
                         </button>
                       </Td>
                       <Td className="text-neutral-500">{formatDate(c.updatedAt)}</Td>

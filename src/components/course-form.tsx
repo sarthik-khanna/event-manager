@@ -50,7 +50,7 @@ function initialState(course?: CourseDetail): FormState {
       instructor: "",
       thumbnailUrl: "",
       durationHours: "1",
-      isPublished: false,
+      isPublished: true,
       lessons: [emptyLesson()],
     };
   }
@@ -131,7 +131,8 @@ export function CourseForm({ course }: { course?: CourseDetail }) {
         method: course ? "PATCH" : "POST",
         json: toPayload(state),
       });
-      toast(course ? "Course updated" : "Course created");
+      const status = state.isPublished ? "published" : "saved as a draft — students can't see it yet";
+      toast(course ? `Course updated (${state.isPublished ? "published" : "draft"})` : `Course created and ${status}`);
       router.push("/admin/courses");
       router.refresh();
     } catch (err) {
@@ -186,14 +187,25 @@ export function CourseForm({ course }: { course?: CourseDetail }) {
         <Field label="Thumbnail URL" htmlFor="thumbnailUrl" error={err("thumbnailUrl")} hint="Optional https:// image link.">
           <Input id="thumbnailUrl" value={state.thumbnailUrl} onChange={(e) => set("thumbnailUrl", e.target.value)} aria-invalid={invalid("thumbnailUrl")} placeholder="https://images.unsplash.com/…" />
         </Field>
-        <label className="flex w-fit cursor-pointer items-center gap-3 text-sm text-neutral-200">
+        <label
+          className={`flex cursor-pointer items-start gap-3 rounded-xl border p-4 text-sm ${
+            state.isPublished ? "border-emerald-500/30 bg-emerald-500/5" : "border-amber-500/30 bg-amber-500/5"
+          }`}
+        >
           <input
             type="checkbox"
             checked={state.isPublished}
             onChange={(e) => set("isPublished", e.target.checked)}
-            className="size-4 accent-indigo-500"
+            className="mt-0.5 size-4 accent-indigo-500"
           />
-          Published (visible to students)
+          <span>
+            <span className="block font-medium text-neutral-100">Publish this course</span>
+            <span className="mt-0.5 block text-neutral-400">
+              {state.isPublished
+                ? "Visible to all students in the course catalog."
+                : "Saved as a draft. Only admins can see it until you publish it."}
+            </span>
+          </span>
         </label>
       </Card>
 
