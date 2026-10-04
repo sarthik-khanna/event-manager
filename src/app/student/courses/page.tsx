@@ -5,7 +5,7 @@ import { useState } from "react";
 import { EnrollmentCard } from "@/components/enrollment-card";
 import { ButtonLink } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Alert, EmptyState, PageHeader, Skeleton } from "@/components/ui/misc";
+import { ErrorAlert, EmptyState, PageHeader, Skeleton } from "@/components/ui/misc";
 import { toQuery, type EnrollmentDto, type Paginated } from "@/lib/client";
 import { useApi, useDebounced } from "@/lib/hooks";
 import { cn } from "@/lib/utils";
@@ -47,7 +47,7 @@ export default function MyCoursesPage() {
         </div>
       </div>
 
-      {error && <Alert>{error}</Alert>}
+      {error && <ErrorAlert>{error}</ErrorAlert>}
       {loading && !data ? (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {Array.from({ length: 3 }).map((_, i) => (

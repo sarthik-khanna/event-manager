@@ -28,9 +28,9 @@ Taken from the running app (production build) against a seeded Neon database.
 | --- | --- |
 | ![Course detail page](docs/screenshots/04-course-detail.png) | ![Login page](docs/screenshots/06-login.png) |
 
-| Sign-up form validation |
-| --- |
-| ![Register form showing validation errors](docs/screenshots/05-register-validation.png) |
+| Sign-up form validation | Error alert (shadcn/ui Alert) |
+| --- | --- |
+| ![Register form showing validation errors](docs/screenshots/05-register-validation.png) | ![Login page showing an error alert for a wrong password](docs/screenshots/17-login-error-alert.png) |
 
 The [full landing page](docs/screenshots/02-landing-full.png) is also available as one tall image.
 
@@ -70,7 +70,7 @@ The [full landing page](docs/screenshots/02-landing-full.png) is also available 
 | --- | --- |
 | Framework | **Next.js 16** (App Router, Route Handlers, Proxy), React 19, TypeScript |
 | Styling | **Tailwind CSS v4** |
-| UI components | **Aceternity UI** patterns (Spotlight, Sidebar, Card Hover Effect, Bento Grid, Moving Border, Text Generate Effect, animated inputs) built with `motion` |
+| UI components | **Aceternity UI** patterns (Spotlight, Sidebar, Card Hover Effect, Bento Grid, Moving Border, Text Generate Effect, animated inputs) built with `motion`, plus the **shadcn/ui Alert** for error callouts |
 | Auth | **JWT** (`jose`, HS256) in an httpOnly cookie or a `Bearer` header; passwords hashed with `bcryptjs` |
 | Database | **Neon PostgreSQL** (serverless) with **Drizzle ORM** and migrations |
 | Validation | **Zod**, with the same schemas used on the client and the server |

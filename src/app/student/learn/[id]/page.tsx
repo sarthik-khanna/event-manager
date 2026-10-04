@@ -6,7 +6,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import { useToast } from "@/components/toast";
 import { Button, ButtonLink } from "@/components/ui/button";
-import { Alert, Badge, Card, ProgressBar, Skeleton } from "@/components/ui/misc";
+import { ErrorAlert, Badge, Card, ProgressBar, Skeleton } from "@/components/ui/misc";
 import { api, ApiClientError, type EnrollmentDetail } from "@/lib/client";
 import { useApi } from "@/lib/hooks";
 import { cn } from "@/lib/utils";
@@ -35,7 +35,7 @@ export default function LearnPage() {
   if (error || !data) {
     return (
       <div className="mx-auto max-w-xl space-y-4">
-        <Alert>{error ?? "Enrollment not found"}</Alert>
+        <ErrorAlert title="Could not open this course">{error ?? "Enrollment not found"}</ErrorAlert>
         <ButtonLink href="/student/courses" variant="secondary">Back to my courses</ButtonLink>
       </div>
     );

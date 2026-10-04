@@ -6,7 +6,7 @@ import { useState, type FormEvent } from "react";
 import { useToast } from "@/components/toast";
 import { Button, ButtonLink } from "@/components/ui/button";
 import { Field, Input, Select, Textarea } from "@/components/ui/input";
-import { Alert, Card } from "@/components/ui/misc";
+import { ErrorAlert, Card } from "@/components/ui/misc";
 import { api, ApiClientError, type CourseDetail } from "@/lib/client";
 import { capitalize, COURSE_CATEGORIES, COURSE_LEVELS } from "@/lib/utils";
 import { courseInputSchema, fieldErrors } from "@/lib/validations";
@@ -149,7 +149,7 @@ export function CourseForm({ course }: { course?: CourseDetail }) {
 
   return (
     <form onSubmit={onSubmit} noValidate className="space-y-6">
-      {formError && <Alert>{formError}</Alert>}
+      {formError && <ErrorAlert title={course ? "Course not updated" : "Course not created"}>{formError}</ErrorAlert>}
 
       <Card className="space-y-5 p-6">
         <h2 className="font-semibold text-white">Course details</h2>
@@ -219,7 +219,7 @@ export function CourseForm({ course }: { course?: CourseDetail }) {
             <Plus className="size-4" /> Add lesson
           </Button>
         </div>
-        {err("lessons") && <Alert>{err("lessons")}</Alert>}
+        {err("lessons") && <ErrorAlert title="Lessons need attention">{err("lessons")}</ErrorAlert>}
 
         {state.lessons.map((lesson, i) => (
           <div key={lesson.key} className="space-y-4 rounded-xl border border-white/[0.08] bg-black/40 p-4">

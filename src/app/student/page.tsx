@@ -4,7 +4,7 @@ import { Award, BookOpen, Flame, TrendingUp } from "lucide-react";
 import Link from "next/link";
 import { EnrollmentCard } from "@/components/enrollment-card";
 import { ButtonLink } from "@/components/ui/button";
-import { Alert, Card, EmptyState, PageHeader, ProgressBar, Skeleton, StatCard } from "@/components/ui/misc";
+import { ErrorAlert, Card, EmptyState, PageHeader, ProgressBar, Skeleton, StatCard } from "@/components/ui/misc";
 import type { EnrollmentDto, Paginated } from "@/lib/client";
 import { useApi } from "@/lib/hooks";
 
@@ -22,7 +22,7 @@ export default function StudentDashboard() {
         description="Here's an overview of your learning progress."
         actions={<ButtonLink href="/courses">Browse courses</ButtonLink>}
       />
-      {error && <Alert>{error}</Alert>}
+      {error && <ErrorAlert>{error}</ErrorAlert>}
 
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
         {loading && !data ? (

@@ -1,5 +1,7 @@
+import { AlertCircle } from "lucide-react";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import { Alert, AlertDescription, AlertTitle } from "./alert";
 
 export function Badge({
   children,
@@ -117,18 +119,13 @@ export function PageHeader({
   );
 }
 
-export function Alert({ children, tone = "error" }: { children: ReactNode; tone?: "error" | "success" }) {
+/** Error callout built on the shadcn/ui Alert (destructive variant, tinted for the dark theme). */
+export function ErrorAlert({ title = "Something went wrong", children }: { title?: string; children: ReactNode }) {
   return (
-    <div
-      role="alert"
-      className={cn(
-        "rounded-lg border px-4 py-3 text-sm",
-        tone === "error"
-          ? "border-red-500/30 bg-red-500/10 text-red-300"
-          : "border-emerald-500/30 bg-emerald-500/10 text-emerald-300",
-      )}
-    >
-      {children}
-    </div>
+    <Alert variant="destructive" className="border-red-500/30 bg-red-500/10">
+      <AlertCircle />
+      <AlertTitle>{title}</AlertTitle>
+      <AlertDescription className="text-red-200/90">{children}</AlertDescription>
+    </Alert>
   );
 }

@@ -3,12 +3,23 @@
 :root {
   --background: #030303;
   --foreground: #ededed;
+  /* shadcn/ui semantic tokens (used by components/ui/alert.tsx) */
+  --card: #0a0a0a;
+  --card-foreground: #ededed;
+  --muted-foreground: #a3a3a3;
+  --destructive: #f87171;
+  --border: rgb(255 255 255 / 0.1);
   color-scheme: dark;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 

@@ -6,7 +6,7 @@ import { useState } from "react";
 import { CourseFilters, type CourseFilterValues } from "@/components/course-filters";
 import { useToast } from "@/components/toast";
 import { ButtonLink } from "@/components/ui/button";
-import { Alert, Badge, EmptyState, levelTone, PageHeader, Skeleton } from "@/components/ui/misc";
+import { ErrorAlert, Badge, EmptyState, levelTone, PageHeader, Skeleton } from "@/components/ui/misc";
 import { Pagination } from "@/components/ui/pagination";
 import { Table, Td, Th } from "@/components/ui/table";
 import { api, ApiClientError, toQuery, type CourseSummary, type Paginated } from "@/lib/client";
@@ -64,7 +64,7 @@ export default function AdminCoursesPage() {
       />
 
       <div className="mt-6">
-        {error && <Alert>{error}</Alert>}
+        {error && <ErrorAlert>{error}</ErrorAlert>}
         {loading && !data ? (
           <Skeleton className="h-96" />
         ) : data?.items.length === 0 ? (

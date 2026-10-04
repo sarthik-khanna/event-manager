@@ -4,7 +4,7 @@ import { Search, Trash2 } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/components/toast";
 import { Input, Select } from "@/components/ui/input";
-import { Alert, Badge, EmptyState, PageHeader, ProgressBar, Skeleton } from "@/components/ui/misc";
+import { ErrorAlert, Badge, EmptyState, PageHeader, ProgressBar, Skeleton } from "@/components/ui/misc";
 import { Pagination } from "@/components/ui/pagination";
 import { Table, Td, Th } from "@/components/ui/table";
 import { api, ApiClientError, toQuery, type CourseSummary, type EnrollmentDto, type Paginated } from "@/lib/client";
@@ -70,7 +70,7 @@ export default function AdminEnrollmentsPage() {
         </div>
       </div>
 
-      {error && <Alert>{error}</Alert>}
+      {error && <ErrorAlert>{error}</ErrorAlert>}
       {loading && !data ? (
         <Skeleton className="h-96" />
       ) : data?.items.length === 0 ? (

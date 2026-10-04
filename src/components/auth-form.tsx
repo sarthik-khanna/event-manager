@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { Field, Input } from "@/components/ui/input";
-import { Alert } from "@/components/ui/misc";
+import { ErrorAlert } from "@/components/ui/misc";
 import { api, ApiClientError } from "@/lib/client";
 import { fieldErrors, loginSchema, registerSchema } from "@/lib/validations";
 
@@ -101,7 +101,7 @@ export function AuthForm({ mode, next }: { mode: Mode; next?: string }) {
       <p className="mt-2 text-sm text-neutral-400">{copy[mode].subtitle}</p>
 
       <form className="my-8 space-y-4" onSubmit={onSubmit} noValidate>
-        {formError && <Alert>{formError}</Alert>}
+        {formError && <ErrorAlert title={mode === "login" ? "Could not log you in" : "Could not create your account"}>{formError}</ErrorAlert>}
         {fields.map((f) => (
           <Field key={f.name} label={f.label} htmlFor={f.name} error={touched[f.name] ? errors[f.name] : undefined} hint={f.hint}>
             <Input

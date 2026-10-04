@@ -4,7 +4,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { CourseCard } from "@/components/course-card";
 import { CourseFilters, type CourseFilterValues } from "@/components/course-filters";
-import { Alert, EmptyState, Skeleton } from "@/components/ui/misc";
+import { ErrorAlert, EmptyState, Skeleton } from "@/components/ui/misc";
 import { Pagination } from "@/components/ui/pagination";
 import { toQuery, type CourseSummary, type Paginated } from "@/lib/client";
 import { useApi, useDebounced } from "@/lib/hooks";
@@ -43,7 +43,7 @@ export function CourseCatalog() {
       />
 
       <div className="mt-8">
-        {error && <Alert>{error}</Alert>}
+        {error && <ErrorAlert>{error}</ErrorAlert>}
         {loading && !data ? (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {Array.from({ length: 6 }).map((_, i) => (

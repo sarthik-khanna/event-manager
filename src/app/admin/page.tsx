@@ -3,7 +3,7 @@
 import { Award, BookOpen, GraduationCap, ListChecks, Plus } from "lucide-react";
 import Link from "next/link";
 import { ButtonLink } from "@/components/ui/button";
-import { Alert, Badge, Card, PageHeader, ProgressBar, Skeleton, StatCard } from "@/components/ui/misc";
+import { ErrorAlert, Badge, Card, PageHeader, ProgressBar, Skeleton, StatCard } from "@/components/ui/misc";
 import { Table, Td, Th } from "@/components/ui/table";
 import { useApi } from "@/lib/hooks";
 import { formatDate } from "@/lib/utils";
@@ -46,7 +46,7 @@ export default function AdminOverview() {
           </ButtonLink>
         }
       />
-      {error && <Alert>{error}</Alert>}
+      {error && <ErrorAlert>{error}</ErrorAlert>}
 
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
         {loading || !data ? (
