@@ -11,8 +11,10 @@ type CourseQuery = z.output<typeof courseQuerySchema>;
 type CourseInput = z.output<typeof courseInputSchema>;
 type CourseUpdate = z.output<typeof courseUpdateSchema>;
 
-const enrollmentCount = sql<number>`(select count(*)::int from ${enrollments} where ${enrollments.courseId} = ${courses.id})`;
-const lessonCount = sql<number>`(select count(*)::int from ${lessons} where ${lessons.courseId} = ${courses.id})`;
+// Drizzle omits table qualifiers in single-table selects, so `${courses.id}` would render as a bare
+// "id" and bind to the subquery's own table. Reference the outer table explicitly.
+const enrollmentCount = sql<number>`(select count(*)::int from ${enrollments} where ${enrollments.courseId} = "courses"."id")`;
+const lessonCount = sql<number>`(select count(*)::int from ${lessons} where ${lessons.courseId} = "courses"."id")`;
 
 const courseColumns = {
   id: courses.id,

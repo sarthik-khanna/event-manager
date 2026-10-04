@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 // Aceternity UI — Bento Grid
 export function BentoGrid({ className, children }: { className?: string; children: ReactNode }) {
   return (
-    <div className={cn("mx-auto grid max-w-7xl grid-cols-1 gap-4 md:auto-rows-[16rem] md:grid-cols-3", className)}>
+    <div className={cn("mx-auto grid max-w-7xl grid-cols-1 gap-4 md:auto-rows-[minmax(16rem,auto)] md:grid-cols-3", className)}>
       {children}
     </div>
   );

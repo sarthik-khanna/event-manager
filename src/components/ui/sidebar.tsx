@@ -58,13 +58,17 @@ function DesktopSidebar({ className, children }: { className?: string; children:
 function MobileSidebar({ className, children }: { className?: string; children: ReactNode }) {
   const { open, setOpen } = useSidebar();
   return (
-    <div className="sticky top-0 z-40 flex h-14 w-full items-center justify-between border-b border-white/[0.06] bg-neutral-950/90 px-4 backdrop-blur md:hidden">
-      <Link href="/" className="flex items-center gap-2 font-semibold text-white">
-        <LogoMark /> LearnHub
-      </Link>
-      <button aria-label="Open menu" onClick={() => setOpen(true)} className="text-neutral-200">
-        <Menu className="size-6" />
-      </button>
+    <>
+      <div className="sticky top-0 z-40 flex h-14 w-full items-center justify-between border-b border-white/[0.06] bg-neutral-950/90 px-4 backdrop-blur md:hidden">
+        <Link href="/" className="flex items-center gap-2 font-semibold text-white">
+          <LogoMark /> LearnHub
+        </Link>
+        <button aria-label="Open menu" onClick={() => setOpen(true)} className="text-neutral-200">
+          <Menu className="size-6" />
+        </button>
+      </div>
+      {/* Sibling of the header, not a child: backdrop-blur makes the header the containing block
+          for `fixed` descendants, which would shrink the drawer to the header's 56px height. */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -72,7 +76,7 @@ function MobileSidebar({ className, children }: { className?: string; children: 
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: "-100%", opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className={cn("fixed inset-0 z-[100] flex h-full w-full flex-col bg-neutral-950 p-6", className)}
+            className={cn("fixed inset-0 z-[100] flex h-full w-full flex-col bg-neutral-950 p-6 md:hidden", className)}
           >
             <button
               aria-label="Close menu"
@@ -85,7 +89,7 @@ function MobileSidebar({ className, children }: { className?: string; children: 
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </>
   );
 }
 

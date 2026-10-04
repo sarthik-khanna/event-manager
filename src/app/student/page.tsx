@@ -68,7 +68,8 @@ export default function StudentDashboard() {
         <aside>
           <h2 className="mb-4 text-lg font-semibold text-white">Progress by course</h2>
           <Card className="space-y-5">
-            {items.length === 0 && <p className="text-sm text-neutral-500">Nothing to show yet.</p>}
+            {loading && !data && <Skeleton className="h-24" />}
+            {!loading && items.length === 0 && <p className="text-sm text-neutral-500">Nothing to show yet.</p>}
             {items.map((e) => (
               <Link key={e.id} href={`/student/learn/${e.id}`} className="block">
                 <div className="mb-1.5 flex justify-between gap-3 text-sm">

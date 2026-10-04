@@ -11,7 +11,7 @@ import { recalculateProgress } from "./progress";
 
 type EnrollmentQuery = z.output<typeof enrollmentQuerySchema>;
 
-const lessonCount = sql<number>`(select count(*)::int from ${lessons} where ${lessons.courseId} = ${courses.id})`;
+const lessonCount = sql<number>`(select count(*)::int from ${lessons} where ${lessons.courseId} = "courses"."id")`;
 
 const enrollmentColumns = {
   id: enrollments.id,

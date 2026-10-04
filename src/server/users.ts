@@ -59,8 +59,9 @@ export async function listUsers(query: z.output<typeof userQuerySchema>) {
     db
       .select({
         ...publicColumns,
-        enrollmentCount: sql<number>`(select count(*)::int from ${enrollments} where ${enrollments.userId} = ${users.id})`,
-        completedCount: sql<number>`(select count(*)::int from ${enrollments} where ${enrollments.userId} = ${users.id} and ${enrollments.status} = 'completed')`,
+        // Explicit outer reference: single-table selects render `${users.id}` as a bare "id".
+        enrollmentCount: sql<number>`(select count(*)::int from ${enrollments} where ${enrollments.userId} = "users"."id")`,
+        completedCount: sql<number>`(select count(*)::int from ${enrollments} where ${enrollments.userId} = "users"."id" and ${enrollments.status} = 'completed')`,
       })
       .from(users)
       .where(where)
