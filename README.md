@@ -11,7 +11,58 @@ LearnHub is a full-stack web app for managing online courses and student enrollm
 | GitHub repository | _add your repository URL here_ |
 | REST API documentation | [docs/API.md](docs/API.md) |
 | Database schema | [docs/DATABASE.md](docs/DATABASE.md) · [drizzle/0000_init.sql](drizzle/0000_init.sql) |
-| Screenshots | [docs/screenshots](docs/screenshots) |
+| Screenshots | [Screenshots section below](#screenshots) · [docs/screenshots](docs/screenshots) |
+| Architecture diagram | [.archify/architecture-learnhub-20261004-212803/learnhub.html](.archify/architecture-learnhub-20261004-212803/learnhub.html) (download and open in a browser) |
+
+## Screenshots
+
+Taken from the running app (production build) against a seeded Neon database.
+
+### Public site
+
+| Landing page | Course catalog (search and filters) |
+| --- | --- |
+| ![Landing page](docs/screenshots/01-landing.png) | ![Course catalog filtered to beginner courses](docs/screenshots/03-course-catalog.png) |
+
+| Course detail | Login with demo accounts |
+| --- | --- |
+| ![Course detail page](docs/screenshots/04-course-detail.png) | ![Login page](docs/screenshots/06-login.png) |
+
+| Sign-up form validation |
+| --- |
+| ![Register form showing validation errors](docs/screenshots/05-register-validation.png) |
+
+The [full landing page](docs/screenshots/02-landing-full.png) is also available as one tall image.
+
+### Student
+
+| Dashboard | My courses |
+| --- | --- |
+| ![Student dashboard](docs/screenshots/07-student-dashboard.png) | ![My courses](docs/screenshots/08-student-my-courses.png) |
+
+| Lesson player with progress tracking |
+| --- |
+| ![Lesson player](docs/screenshots/09-lesson-player.png) |
+
+### Admin
+
+| Overview and analytics | Course management |
+| --- | --- |
+| ![Admin overview](docs/screenshots/12-admin-overview.png) | ![Admin courses](docs/screenshots/13-admin-courses.png) |
+
+| Course form validation | Enrollments (searched) |
+| --- | --- |
+| ![Create course form with validation errors](docs/screenshots/14-admin-course-form-validation.png) | ![Admin enrollments](docs/screenshots/15-admin-enrollments.png) |
+
+| Users (searched) |
+| --- |
+| ![Admin users](docs/screenshots/16-admin-users.png) |
+
+### Mobile
+
+| Student dashboard | Navigation drawer |
+| --- | --- |
+| <img src="docs/screenshots/10-mobile-student-dashboard.png" alt="Student dashboard on a phone" width="300"> | <img src="docs/screenshots/11-mobile-menu.png" alt="Mobile navigation drawer" width="300"> |
 
 ## Tech stack
 
