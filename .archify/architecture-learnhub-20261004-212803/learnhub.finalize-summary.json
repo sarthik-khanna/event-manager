@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "finalize",
+  "status": "pass",
+  "type": "architecture",
+  "quality": "showcase",
+  "specification": {
+    "path": "D:\\event-manager\\.archify\\architecture-learnhub-20261004-212803\\candidate.json",
+    "sha256": "3af0094b93ef968091fa4a03639b33dfdd9ee78b12e29dbed6cf5b94e9394ae8",
+    "bytes": 3853
+  },
+  "artifact": {
+    "path": "D:\\event-manager\\.archify\\architecture-learnhub-20261004-212803\\learnhub.html",
+    "sha256": "a8c573118b2693a251cacc02ec0f5374f69b8ab3051c46ab583f0ec4ada9f515",
+    "bytes": 764855
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "pass"
+  },
+  "diagnostics": [],
+  "diagnosticSummary": {
+    "total": 0,
+    "shown": 0,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "D:\\event-manager\\.archify\\architecture-learnhub-20261004-212803\\learnhub.finalize.json",
+    "summaryReceipt": "D:\\event-manager\\.archify\\architecture-learnhub-20261004-212803\\learnhub.finalize-summary.json",
+    "browserCheckReceipt": "D:\\event-manager\\.archify\\architecture-learnhub-20261004-212803\\learnhub.browser-check.json"
+  },
+  "update": {
+    "status": "unavailable",
+    "installedVersion": null,
+    "availableVersion": null,
+    "releaseNotes": null,
+    "checkedAt": null,
+    "source": null,
+    "noticeRequired": false,
+    "noticeText": null,
+    "reason": "cache-unavailable"
+  },
+  "visualReview": "not-requested",
+  "durationMs": 8354
+}

@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "LearnHub — Full Application Architecture",
+    "output": ".archify/architecture-learnhub-20261004-212803/learnhub.html",
+    "quality_profile": "showcase"
+  },
+  "components": [
+    { "id": "users", "type": "external", "label": "Student / Admin", "sublabel": "Web browser", "pos": [40, 300], "size": [140, 64] },
+    { "id": "proxy", "type": "security", "label": "Proxy", "sublabel": "src/proxy.ts", "tag": "optimistic guard", "pos": [290, 300], "size": [140, 64] },
+    { "id": "pages", "type": "frontend", "label": "App Router Pages", "sublabel": "public/student/admin", "pos": [545, 300], "size": [140, 64] },
+    { "id": "api", "type": "backend", "label": "REST API", "sublabel": "Route Handlers /api", "pos": [780, 300], "size": [140, 64] },
+    { "id": "services", "type": "backend", "label": "Service Layer", "sublabel": "src/server/*", "pos": [990, 300], "size": [140, 64] },
+    { "id": "orm", "type": "backend", "label": "Drizzle ORM", "sublabel": "neon-http driver", "pos": [1210, 300], "size": [140, 64] },
+    { "id": "db", "type": "database", "label": "Neon PostgreSQL", "sublabel": "5 tables", "tag": "serverless", "pos": [1470, 300], "size": [140, 64] },
+    { "id": "ui", "type": "frontend", "label": "Aceternity UI", "sublabel": "Tailwind CSS v4", "pos": [545, 150], "size": [140, 64] },
+    { "id": "jwt", "type": "security", "label": "JWT Auth", "sublabel": "jose · bcryptjs", "tag": "httpOnly cookie", "pos": [780, 150], "size": [140, 64] },
+    { "id": "seed", "type": "external", "label": "Migrations + Seed", "sublabel": "drizzle-kit · tsx", "pos": [1470, 450], "size": [140, 64] }
+  ],
+  "boundaries": [
+    { "kind": "region", "label": "Vercel — Next.js 16 runtime", "wraps": ["proxy", "pages", "api", "services", "orm", "ui", "jwt"], "pad": 50 }
+  ],
+  "connections": [
+    { "id": "users-to-proxy", "from": "users", "to": "proxy", "label": "HTTPS", "variant": "emphasis" },
+    { "id": "proxy-to-pages", "from": "proxy", "to": "pages", "label": "role redirect" },
+    { "id": "ui-to-pages", "from": "ui", "to": "pages", "label": "renders", "fromSide": "bottom", "toSide": "top" },
+    { "id": "pages-to-api", "from": "pages", "to": "api", "label": "fetch /api" },
+    { "id": "api-to-jwt", "from": "api", "to": "jwt", "label": "verify JWT", "variant": "security", "fromSide": "top", "toSide": "bottom" },
+    { "id": "api-to-services", "from": "api", "to": "services", "label": "invoke" },
+    { "id": "pages-to-services", "from": "pages", "to": "services", "label": "server components", "variant": "dashed", "fromSide": "bottom", "toSide": "bottom", "via": [[615, 395], [1060, 395]] },
+    { "id": "services-to-orm", "from": "services", "to": "orm", "label": "queries" },
+    { "id": "orm-to-db", "from": "orm", "to": "db", "label": "SQL over HTTP", "variant": "emphasis" },
+    { "id": "seed-to-db", "from": "seed", "to": "db", "label": "migrate + seed", "variant": "dashed", "fromSide": "top", "toSide": "bottom" }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "Frontend", "items": ["Next.js 16 App Router with React 19", "Tailwind v4 and Aceternity UI components", "Forms checked with Zod before submit"] },
+    { "dot": "emerald", "title": "Backend", "items": ["Route Handlers return a success/error JSON envelope", "Zod schemas validate every request body and query", "Service layer owns all database queries"] },
+    { "dot": "rose", "title": "Security", "items": ["Two roles: student and admin", "HS256 JWT in an httpOnly cookie or Bearer header", "Proxy redirects first; layouts and API re-verify the token"] },
+    { "dot": "amber", "title": "Data", "items": ["users, courses, lessons, enrollments, lesson_progress", "Progress is recalculated from lesson_progress", "Schema and SQL migrations managed by Drizzle"] }
+  ]
+}

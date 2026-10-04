@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "58ca7fc7-a1cc-48ec-96fb-af20d8626e6f",
+  "status": "current",
+  "command": "deliver",
+  "type": "architecture",
+  "input": "D:\\event-manager\\.archify\\architecture-learnhub-20261004-212803\\candidate.json",
+  "output": "D:\\event-manager\\.archify\\architecture-learnhub-20261004-212803\\learnhub.html",
+  "specification": {
+    "sha256": "3af0094b93ef968091fa4a03639b33dfdd9ee78b12e29dbed6cf5b94e9394ae8",
+    "bytes": 3853
+  },
+  "artifact": {
+    "sha256": "a8c573118b2693a251cacc02ec0f5374f69b8ab3051c46ab583f0ec4ada9f515",
+    "bytes": 764855
+  }
+}
